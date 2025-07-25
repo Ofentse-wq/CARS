@@ -1,34 +1,56 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dream Cars – Ofentse</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+  <title>O’s Dream Garage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Outfit', sans-serif;
     }
 
     body {
-      background-color: #fdfdfd;
-      color: #222;
+      font-family: 'Outfit', sans-serif;
+      color: #fff;
       padding: 1rem;
+      position: relative;
+      z-index: 0;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #111827);
+      background-size: 800% 800%;
+      animation: gradientShift 15s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     header {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 1.2rem;
+      font-size: 2.5rem;
+      font-family: 'Pacifico', cursive;
       text-align: center;
+      margin-bottom: 1rem;
+      color: #facc15;
     }
 
     .intro {
       font-size: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       line-height: 1.5;
       text-align: center;
     }
@@ -42,29 +64,22 @@
     .car {
       display: flex;
       flex-direction: column;
-      background: white;
+      background-color: rgba(255,255,255,0.05);
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-      position: relative;
-      cursor: pointer;
-      animation: fadeInUp 0.8s ease both;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .car:hover {
+      transform: scale(1.01);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
     }
 
     .car img {
       width: 100%;
       height: auto;
+      border: 4px solid white;
     }
 
     .car-info {
@@ -72,57 +87,30 @@
     }
 
     .car-info h2 {
-      font-size: 1.2rem;
-      font-weight: 600;
+      font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
 
     .car-info p {
       font-size: 0.95rem;
-      line-height: 1.4;
-    }
-
-    .click-hint {
-      font-size: 0.8rem;
-      color: #777;
-      margin-top: 0.3rem;
+      color: #ddd;
     }
 
     .top-pick {
       position: absolute;
       top: 10px;
       left: 10px;
-      background-color: #222;
-      color: #fff;
+      background-color: #111827;
+      color: white;
       padding: 4px 8px;
-      font-size: 0.75rem;
-      border-radius: 6px;
-    }
-
-    .bubble {
-      display: none;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      max-width: 60%;
-      font-size: 0.85rem;
-      z-index: 10;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+      font-size: 0.7rem;
+      border-radius: 8px;
     }
 
     @media (min-width: 700px) {
       .car {
         flex-direction: row;
+        align-items: center;
       }
 
       .car:nth-child(even) {
@@ -131,46 +119,45 @@
 
       .car img {
         width: 50%;
+        height: auto;
       }
 
       .car-info {
         width: 50%;
-        padding: 1.5rem;
+        padding: 1.2rem;
       }
     }
 
     footer {
-      text-align: center;
       margin-top: 3rem;
       font-size: 0.8rem;
-      color: #aaa;
+      color: #bbb;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <header>O – My Dream Cars</header>
+  <header>O’s Dream Garage</header>
 
   <section class="intro">
-    <p>Welcome to my collection of dream rides — a lineup of machines that blend raw power with beautiful design. From rugged beasts to sleek icons, these are the cars I can’t stop thinking about.</p>
+    <p>Welcome to my collection of dream rides — a carefully selected lineup of machines that blend raw performance with beautiful design. From rugged powerhouses to sleek luxury icons, this is the garage I’m always dreaming about.</p>
   </section>
 
   <section class="car-list">
-    <div class="car" onclick="showBubble(this, 'I don\\'t know why she likes this car, because she\\'s too tiny for it 😂')">
+    <div class="car">
       <div class="top-pick">Top Pick</div>
       <img src="ford-raptor.jpg" alt="Ford Raptor" />
       <div class="car-info">
-        <h2>Ford Raptor (Phiwe's favourite 🥰🤭)</h2>
-        <p>Big. Bold. Built for any road — or no road at all.</p>
-        <span class="click-hint">(Tap to see why 💬)</span>
+        <h2>Ford Raptor (Phiwe's favourites🥰🤭)</h2>
+        <p>Big. Bold. Built for adventure.</p>
       </div>
-      <div class="bubble"></div>
     </div>
 
     <div class="car">
-      <img src="amg-gt63.jpg" alt="AMG GT63 S" />
+      <img src="amg-gt63.jpg" alt="AMG GT63S 4-Door" />
       <div class="car-info">
         <h2>Mercedes-AMG GT63 S 4-Door</h2>
-        <p>Luxury and performance in one aggressive package. Smooth but wild.</p>
+        <p>Smooth, fast, and full of style.</p>
       </div>
     </div>
 
@@ -178,43 +165,21 @@
       <img src="bmw.jpg" alt="BMW M3 & M4" />
       <div class="car-info">
         <h2>BMW M3 & M4 (New)</h2>
-        <p>Sharp looks, crazy power, and pure driving fun.</p>
+        <p>Sharp looks. Crazy power. So fun to drive.</p>
       </div>
     </div>
 
-    <div class="car" onclick="showBubble(this, 'I just know she\\'s gonna look attractive in this car and she knows it. 😉')">
-      <img src="g63.jpg" alt="Mercedes-Benz G-Wagon" />
+    <div class="car">
+      <img src="g63.jpg" alt="G Wagon" />
       <div class="car-info">
-        <h2>Mercedes-Benz G-Wagon (Phiwe's favourite 🥰🤭)</h2>
-        <p>Boxy, classy, and straight-up boss vibes. Tough outside, fancy inside.</p>
-        <span class="click-hint">(Tap to see why 💬)</span>
+        <h2>Mercedes-Benz G-Wagon (Phiwe's favourites🥰🤭)</h2>
+        <p>Tough outside. Classy inside. Boss vibes.</p>
       </div>
-      <div class="bubble"></div>
     </div>
   </section>
 
   <footer>
     <p>Created with passion by Ofentse © 2025</p>
   </footer>
-
-  <script>
-    function showBubble(card, text) {
-      const bubble = card.querySelector('.bubble');
-      const allBubbles = document.querySelectorAll('.bubble');
-      allBubbles.forEach(b => {
-        if (b !== bubble) b.style.display = 'none';
-      });
-
-      if (bubble.style.display === 'block') {
-        bubble.style.display = 'none';
-      } else {
-        bubble.textContent = text;
-        bubble.style.display = 'block';
-        setTimeout(() => {
-          bubble.style.display = 'none';
-        }, 3500);
-      }
-    }
-  </script>
 </body>
 </html>
