@@ -1,98 +1,57 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Dream Cars</title>
+  <title>Dream Cars – Ofentse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
-
-    body {
-      background-color: #ffffff;
-      color: #1a1a1a;
-      font-family: 'Manrope', sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-size: 14px;
+      font-family: 'Outfit', sans-serif;
     }
 
-    .wrapper {
-      background-color: rgba(245, 245, 245, 0.7);
-      padding: 1rem 0;
-      max-width: 100%;
-      margin: 0 auto;
+    body {
+      background-color: #fdfdfd;
+      color: #222;
+      padding: 1rem;
     }
 
     header {
-      padding: 1rem 1.5rem;
-      background-color: rgba(0, 0, 0, 0.05);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .logo {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #fff;
-      background-color: #000;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    header h1 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin: 0;
-      color: #111;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      text-align: center;
     }
 
     .intro {
-      padding: 1rem 1.5rem;
-    }
-
-    .intro p {
-      font-size: 0.95rem;
+      font-size: 1rem;
+      margin-bottom: 2rem;
       line-height: 1.5;
-      color: #333;
+      text-align: center;
     }
 
     .car-list {
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      padding: 1rem 1.5rem 3rem;
     }
 
     .car {
       display: flex;
-      flex-direction: row;
-      background-color: rgba(230, 230, 230, 0.95);
-      border-radius: 12px;
+      flex-direction: column;
+      background: white;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      position: relative;
       cursor: pointer;
-      transform: translateY(30px);
-      opacity: 0;
-      animation: fadeSlideIn 0.6s ease-out forwards;
+      animation: fadeInUp 0.8s ease both;
     }
 
-    .car.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes fadeSlideIn {
+    @keyframes fadeInUp {
       from {
         opacity: 0;
         transform: translateY(30px);
@@ -103,196 +62,158 @@
       }
     }
 
-    .car:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-
     .car img {
-      width: 50%;
-      object-fit: cover;
+      width: 100%;
+      height: auto;
     }
 
     .car-info {
       padding: 1rem;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .car-info h2 {
-      font-size: 1rem;
-      margin: 0 0 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
 
     .car-info p {
-      font-size: 0.85rem;
-      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
     }
 
     .click-hint {
-      font-size: 0.75rem;
-      color: #666;
+      font-size: 0.8rem;
+      color: #777;
       margin-top: 0.3rem;
     }
 
     .top-pick {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      background-color: #000;
+      top: 10px;
+      left: 10px;
+      background-color: #222;
       color: #fff;
-      padding: 0.3rem 0.6rem;
-      font-size: 0.65rem;
-      font-weight: bold;
+      padding: 4px 8px;
+      font-size: 0.75rem;
       border-radius: 6px;
-      z-index: 1;
     }
 
     .bubble {
+      display: none;
       position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      background: #000;
-      color: #fff;
-      padding: 0.8rem 1rem;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      max-width: 80%;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeInUp 0.5s ease forwards;
-      z-index: 2;
+      top: 10px;
+      right: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      max-width: 60%;
+      font-size: 0.85rem;
+      z-index: 10;
+      animation: fadeIn 0.3s ease-in-out;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (min-width: 700px) {
+      .car {
+        flex-direction: row;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .car:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .car img {
+        width: 50%;
+      }
+
+      .car-info {
+        width: 50%;
+        padding: 1.5rem;
       }
     }
 
     footer {
-      background-color: rgba(0, 0, 0, 0.03);
-      padding: 2rem 1.5rem;
-      text-align: left;
+      text-align: center;
+      margin-top: 3rem;
       font-size: 0.8rem;
-      border-top: 1px solid #ddd;
-    }
-
-    @media (max-width: 768px) {
-      .car {
-        flex-direction: column;
-      }
-
-      .car:nth-child(even) {
-        flex-direction: column;
-      }
-
-      .car img, .car-info {
-        width: 100%;
-      }
-
-      .car-info {
-        padding: 1rem;
-      }
-
-      header h1 {
-        font-size: 1rem;
-      }
-
-      .car-info h2 {
-        font-size: 0.9rem;
-      }
-
-      .car-info p {
-        font-size: 0.8rem;
-      }
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <div class="logo">O</div>
-      <h1>My Dream Cars</h1>
-    </header>
+  <header>O – My Dream Cars</header>
 
-    <section class="intro">
-      <p>Welcome to my collection of dream rides — a carefully selected lineup of machines that blend raw performance with beautiful design.</p>
-    </section>
+  <section class="intro">
+    <p>Welcome to my collection of dream rides — a lineup of machines that blend raw power with beautiful design. From rugged beasts to sleek icons, these are the cars I can’t stop thinking about.</p>
+  </section>
 
-    <section class="car-list">
-      <div class="car" onclick="showBubble(this, 'I don\'t know why she likes this car, because she\'s too tiny for this car 😂')">
-        <div class="top-pick">Top Pick</div>
-        <img src="/ford-raptor.jpg" alt="Ford Raptor" />
-        <div class="car-info">
-          <h2>Ford Raptor (Phiwe's favourites🥰🤭)</h2>
-          <p>Big. Bold. Built to handle any road or no road at all.</p>
-          <span class="click-hint">(Tap to see why 💬)</span>
-        </div>
+  <section class="car-list">
+    <div class="car" onclick="showBubble(this, 'I don\\'t know why she likes this car, because she\\'s too tiny for it 😂')">
+      <div class="top-pick">Top Pick</div>
+      <img src="ford-raptor.jpg" alt="Ford Raptor" />
+      <div class="car-info">
+        <h2>Ford Raptor (Phiwe's favourite 🥰🤭)</h2>
+        <p>Big. Bold. Built for any road — or no road at all.</p>
+        <span class="click-hint">(Tap to see why 💬)</span>
       </div>
+      <div class="bubble"></div>
+    </div>
 
-      <div class="car">
-        <img src="amg-gt63.jpg" alt="AMG GT63S 4-Door" />
-        <div class="car-info">
-          <h2>Mercedes-AMG GT63 S 4-Door</h2>
-          <p>Smooth, fast, and full of attitude.</p>
-        </div>
+    <div class="car">
+      <img src="amg-gt63.jpg" alt="AMG GT63 S" />
+      <div class="car-info">
+        <h2>Mercedes-AMG GT63 S 4-Door</h2>
+        <p>Luxury and performance in one aggressive package. Smooth but wild.</p>
       </div>
+    </div>
 
-      <div class="car">
-        <img src="/bmw.jpg" alt="BMW M3 & M4" />
-        <div class="car-info">
-          <h2>BMW M3 & M4 (New)</h2>
-          <p>Sharp looks. Wild power. Perfect for pure driving fun.</p>
-        </div>
+    <div class="car">
+      <img src="bmw.jpg" alt="BMW M3 & M4" />
+      <div class="car-info">
+        <h2>BMW M3 & M4 (New)</h2>
+        <p>Sharp looks, crazy power, and pure driving fun.</p>
       </div>
+    </div>
 
-      <div class="car" onclick="showBubble(this, 'I just know she\'s gonna look attractive in this car and she knows it. 😉')">
-        <img src="g63.jpg" alt="G Wagon" />
-        <div class="car-info">
-          <h2>Mercedes-Benz G-Wagon (Phiwe's favourites🥰🤭)</h2>
-          <p>Tough on the outside. Fancy on the inside. A boss car.</p>
-          <span class="click-hint">(Tap to see why 💬)</span>
-        </div>
+    <div class="car" onclick="showBubble(this, 'I just know she\\'s gonna look attractive in this car and she knows it. 😉')">
+      <img src="g63.jpg" alt="Mercedes-Benz G-Wagon" />
+      <div class="car-info">
+        <h2>Mercedes-Benz G-Wagon (Phiwe's favourite 🥰🤭)</h2>
+        <p>Boxy, classy, and straight-up boss vibes. Tough outside, fancy inside.</p>
+        <span class="click-hint">(Tap to see why 💬)</span>
       </div>
-    </section>
+      <div class="bubble"></div>
+    </div>
+  </section>
 
-    <footer>
-      <p>Created with passion by Ofentse © 2025</p>
-    </footer>
-  </div>
+  <footer>
+    <p>Created with passion by Ofentse © 2025</p>
+  </footer>
 
   <script>
-    const cars = document.querySelectorAll('.car');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    function showBubble(card, text) {
+      const bubble = card.querySelector('.bubble');
+      const allBubbles = document.querySelectorAll('.bubble');
+      allBubbles.forEach(b => {
+        if (b !== bubble) b.style.display = 'none';
       });
-    }, { threshold: 0.1 });
 
-    cars.forEach(car => observer.observe(car));
-
-    function showBubble(element, message) {
-      const existing = element.querySelector('.bubble');
-      if (existing) existing.remove();
-
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble';
-      bubble.textContent = message;
-      element.appendChild(bubble);
-
-      setTimeout(() => {
-        bubble.remove();
-      }, 4000);
+      if (bubble.style.display === 'block') {
+        bubble.style.display = 'none';
+      } else {
+        bubble.textContent = text;
+        bubble.style.display = 'block';
+        setTimeout(() => {
+          bubble.style.display = 'none';
+        }, 3500);
+      }
     }
   </script>
 </body>
