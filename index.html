@@ -4,11 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Dream Cars</title>
-
-  <!-- ✅ Google Fonts moved here properly -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
-
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
+
     body {
       background-color: #ffffff;
       color: #1a1a1a;
@@ -28,14 +26,13 @@
     header {
       padding: 1rem 1.5rem;
       background-color: rgba(0, 0, 0, 0.05);
-      border-bottom: 1px solid #ddd;
       display: flex;
       align-items: center;
       gap: 1rem;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #fff;
       background-color: #000;
@@ -45,7 +42,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Manrope', sans-serif;
       animation: bounce 2s infinite;
     }
 
@@ -55,21 +51,19 @@
     }
 
     header h1 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 700;
       margin: 0;
       color: #111;
     }
 
     .intro {
-      padding: 1.5rem 1.5rem;
-      max-width: 1000px;
+      padding: 1rem 1.5rem;
     }
 
     .intro p {
-      font-size: 1rem;
-      line-height: 1.6;
-      max-width: 700px;
+      font-size: 0.95rem;
+      line-height: 1.5;
       color: #333;
     }
 
@@ -77,37 +71,36 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      padding: 1.5rem 1.5rem 3rem;
-      max-width: 100%;
+      padding: 1rem 1.5rem 3rem;
     }
 
     .car {
-      position: relative;
       display: flex;
       flex-direction: row;
-      background-color: rgba(230, 230, 230, 0.9);
+      background-color: rgba(230, 230, 230, 0.95);
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
       cursor: pointer;
-    }
-
-    .car:active {
-      animation: tapScale 0.3s ease-in-out;
-    }
-
-    @keyframes tapScale {
-      0% { transform: scale(1); }
-      50% { transform: scale(0.97); }
-      100% { transform: scale(1); }
+      transform: translateY(30px);
+      opacity: 0;
+      animation: fadeSlideIn 0.6s ease-out forwards;
     }
 
     .car.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .car:nth-child(even) {
@@ -116,28 +109,31 @@
 
     .car img {
       width: 50%;
-      height: auto;
       object-fit: cover;
     }
 
     .car-info {
       padding: 1rem;
+      width: 50%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 50%;
     }
 
     .car-info h2 {
-      font-size: 1.2rem;
-      margin-bottom: 0.8rem;
-      color: #000;
+      font-size: 1rem;
+      margin: 0 0 0.5rem;
     }
 
     .car-info p {
-      font-size: 0.95rem;
-      line-height: 1.4;
-      color: #444;
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    .click-hint {
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 0.3rem;
     }
 
     .top-pick {
@@ -147,17 +143,10 @@
       background-color: #000;
       color: #fff;
       padding: 0.3rem 0.6rem;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: bold;
       border-radius: 6px;
       z-index: 1;
-      letter-spacing: 0.5px;
-    }
-
-    .click-hint {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 0.5rem;
     }
 
     .bubble {
@@ -168,11 +157,11 @@
       color: #fff;
       padding: 0.8rem 1rem;
       border-radius: 12px;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       max-width: 80%;
       opacity: 0;
       transform: translateY(10px);
-      animation: fadeInUp 0.6s ease forwards;
+      animation: fadeInUp 0.5s ease forwards;
       z-index: 2;
     }
 
@@ -191,28 +180,37 @@
       background-color: rgba(0, 0, 0, 0.03);
       padding: 2rem 1.5rem;
       text-align: left;
+      font-size: 0.8rem;
       border-top: 1px solid #ddd;
-    }
-
-    footer p {
-      margin: 0;
-      color: #000;
-      font-size: 0.9rem;
-      font-weight: bold;
     }
 
     @media (max-width: 768px) {
       .car {
         flex-direction: column;
       }
+
       .car:nth-child(even) {
         flex-direction: column;
       }
+
       .car img, .car-info {
         width: 100%;
       }
+
       .car-info {
         padding: 1rem;
+      }
+
+      header h1 {
+        font-size: 1rem;
+      }
+
+      .car-info h2 {
+        font-size: 0.9rem;
+      }
+
+      .car-info p {
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -225,13 +223,13 @@
     </header>
 
     <section class="intro">
-      <p>Welcome to my collection of dream rides — a carefully selected lineup of machines that blend raw performance with beautiful design. From rugged powerhouses to sleek luxury icons, this is the garage I’m always dreaming about.</p>
+      <p>Welcome to my collection of dream rides — a carefully selected lineup of machines that blend raw performance with beautiful design.</p>
     </section>
 
     <section class="car-list">
-      <div class="car" onclick="showBubble(this, 'I don\\'t know why she likes this car, because she\\'s too tiny for this car 😂')">
+      <div class="car" onclick="showBubble(this, 'I don\'t know why she likes this car, because she\'s too tiny for this car 😂')">
         <div class="top-pick">Top Pick</div>
-        <img src="ford-raptor.jpg" alt="Ford Raptor" />
+        <img src="/ford-raptor.jpg" alt="Ford Raptor" />
         <div class="car-info">
           <h2>Ford Raptor (Phiwe's favourites🥰🤭)</h2>
           <p>Big. Bold. Built to handle any road or no road at all.</p>
@@ -248,14 +246,14 @@
       </div>
 
       <div class="car">
-        <img src="bmw.jpg" alt="BMW M3 & M4" />
+        <img src="/bmw.jpg" alt="BMW M3 & M4" />
         <div class="car-info">
           <h2>BMW M3 & M4 (New)</h2>
           <p>Sharp looks. Wild power. Perfect for pure driving fun.</p>
         </div>
       </div>
 
-      <div class="car" onclick="showBubble(this, 'I just know she\\'s gonna look attractive in this car and she knows it. 😉')">
+      <div class="car" onclick="showBubble(this, 'I just know she\'s gonna look attractive in this car and she knows it. 😉')">
         <img src="g63.jpg" alt="G Wagon" />
         <div class="car-info">
           <h2>Mercedes-Benz G-Wagon (Phiwe's favourites🥰🤭)</h2>
